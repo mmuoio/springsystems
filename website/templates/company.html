@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block title %}{{company.name}}{% endblock %} {%
+block content %}
+<h1 align="center">{{company.name}}</h1>
+<div style="text-align: center">
+	{{company.street_address}}<br />
+	{{company.city}}, {{company.state}} {{company.zip}}
+</div>
+<ul class="list-grou list-group-flush" id="notes">
+	{% for employee in employees %}
+	<li class="list-group-item">
+		<h5>{{employee.first_name}} {{employee.last_name}}</h5>
+		{{employee.email}}<br />
+		{{employee.position}}
+	</li>
+	{% endfor %}
+</ul>
+
+<div style="text-align: center"><h3>Add employee</h3></div>
+<form method="POST">
+	<div class="mb-3">
+		<input
+			type="text"
+			name="first_name"
+			id="first_name"
+			class="form-control"
+			placeholder="First Name"
+		/>
+	</div>
+
+	<div class="mb-3">
+		<input
+			type="text"
+			name="last_name"
+			id="last_name"
+			class="form-control"
+			placeholder="Last Name"
+		/>
+	</div>
+
+	<div class="mb-3">
+		<input
+			type="text"
+			name="email"
+			id="email"
+			class="form-control"
+			placeholder="Email"
+		/>
+	</div>
+
+	<div class="mb-3">
+		<input
+			type="text"
+			name="position"
+			id="position"
+			class="form-control"
+			placeholder="Position"
+		/>
+	</div>
+
+	<br />
+	<div align="center">
+		<button type="submit" class="btn btn-primary">Add Employee</button>
+	</div>
+</form>
+
+{% endblock %}

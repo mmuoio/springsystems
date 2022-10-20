@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center">Companies</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Company</th>
+			<th scope="col">Address</th>
+			<th scope="col" style="text-align: center"># of Employees</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for company in companies %}
+		<tr>
+			<th scope="row">{{company.id}}</th>
+			<td>
+				<a href="{{url_for('views.company', id=company.id)}}"
+					>{{company.name}}</a
+				>
+			</td>
+			<td>
+				{{company.street_address}}, {{company.city}}, {{company.state}}
+				{{company.zip}}
+			</td>
+			<td align="center">{{company.employees|length}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+<div style="text-align: center"><h3>Add company</h3></div>
+<form method="POST">
+	<div class="mb-3">
+		<input
+			type="text"
+			name="company_name"
+			id="company_name"
+			class="form-control"
+			placeholder="Company Name"
+		/>
+	</div>
+
+	<div class="mb-3">
+		<input
+			type="text"
+			name="street_address"
+			id="street_address"
+			class="form-control"
+			placeholder="Street Address"
+		/>
+	</div>
+
+	<div class="mb-3">
+		<input
+			type="text"
+			name="city"
+			id="city"
+			class="form-control"
+			placeholder="City"
+		/>
+	</div>
+
+	<div class="mb-3">
+		<input
+			type="text"
+			name="state"
+			id="state"
+			class="form-control"
+			placeholder="State"
+		/>
+	</div>
+
+	<div class="mb-3">
+		<input
+			type="text"
+			name="zip"
+			id="zip"
+			class="form-control"
+			placeholder="Zip Code"
+		/>
+	</div>
+
+	<br />
+	<div align="center">
+		<button type="submit" class="btn btn-primary">Add Company</button>
+	</div>
+</form>
+
+{% endblock %}
